@@ -31,9 +31,10 @@
     if (taskText === "") return;
     let li = document.createElement("li");
 
-    // [المقطع 3]: لمطور الميزات (تعديل السطر بالأسفل لإضافة الوقت)
-    li.innerHTML = `<span onclick="toggleTask(this)">${taskText}</span>
-                    <button onclick="deleteTask(this)">Delete</button>`;
+    //let time = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    li.innerHTML = `<span onclick="toggleTask(this)">${taskText} <small style="color:gray;">(${time})</small></span>
+                    <button onclick="deleteTask(this)" style="color:red; border:none; background:none; cursor:pointer;">Delete</button>`; [المقطع 3]: لمطور الميزات (تعديل السطر بالأسفل لإضافة الوقت)
+   
 
     document.getElementById("taskList").appendChild(li);
     input.value = "";
