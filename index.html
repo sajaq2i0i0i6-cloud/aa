@@ -3,73 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <title>Student Task Manager</title>
+  
   <style>
-    body {
-      font-family: Arial;
-      background: #f5f5f5;
-      text-align: center;
-    }
-    .container {
-      background: white;
-      padding: 20px;
-      width: 300px;
-      margin: 50px auto;
-      border-radius: 10px;
-    }
-    input {
-      padding: 10px;
-      width: 70%;
-    }
-    button {
-      padding: 10px;
-      margin: 5px;
-    }
-    li {
-      list-style: none;
-      margin: 10px 0;
-    }
-    .done {
-      text-decoration: line-through;
-      color: gray;
-    }
+    body { font-family: Arial; background: #f5f5f5; text-align: center; }
+    .container { background: white; padding: 20px; width: 300px; margin: 50px auto; border-radius: 10px; }
+    input { padding: 10px; width: 70%; }
+    button#addBtn { padding: 10px; }
+    li { list-style: none; margin: 10px 0; display: flex; justify-content: space-between; }
+    .done { text-decoration: line-through; color: gray; }
   </style>
 </head>
 <body>
 
 <div class="container">
   <h2>Task Manager</h2>
-  
   <input type="text" id="taskInput" placeholder="Enter task">
-  <button onclick="addTask()">Add</button>
-
+  <button id="addBtn" onclick="addTask()">Add</button>
   <ul id="taskList"></ul>
+
+  <div id="extra"></div>
 </div>
 
 <script>
   function addTask() {
     let input = document.getElementById("taskInput");
     let taskText = input.value;
-
     if (taskText === "") return;
-
     let li = document.createElement("li");
 
-    li.innerHTML = 
-      <span onclick="toggleTask(this)">${taskText}</span>
-      <button onclick="deleteTask(this)">Delete</button>
-    ;
+    // [المقطع 3]: لمطور الميزات (تعديل السطر بالأسفل لإضافة الوقت)
+    li.innerHTML = `<span onclick="toggleTask(this)">${taskText}</span>
+                    <button onclick="deleteTask(this)">Delete</button>`;
 
     document.getElementById("taskList").appendChild(li);
     input.value = "";
   }
 
-  function deleteTask(button) {
-    button.parentElement.remove();
-  }
+  function deleteTask(button) { button.parentElement.remove(); }
+  function toggleTask(span) { span.classList.toggle("done"); }
 
-  function toggleTask(span) {
-    span.classList.toggle("done");
-  }
+  // [المقطع 4]: لمطور البيانات (LocalStorage)
 </script>
 
 </body>
